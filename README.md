@@ -1,9 +1,9 @@
 # lotus-miner
 
-# 最低配置
-* CPU：AMD 3970X 或同系列其他型号
-* 内存：128 GB
-* SSD：1 TB
+# 推荐配置
+* CPU：AMD 3970X 或 Ryzen Threadripper 其他型号
+* 内存：256 GB
+* SSD：2 TB
 * 操作系统：Ubuntu 18.04
 
 # 特点
@@ -11,15 +11,13 @@
 * 封装操作完全在worker完成，除了最终sealed sector回传miner之外没有网络传输。
 * 自动发现空闲worker，启动封装操作。
 
-# 安装
+# 安装配置
+将会安装和配置挖矿程序、必要的库、校准时间、显卡驱动、swap内存。
 ```
+# 下载
 git clone https://github.com/shannon-6block/lotus-miner.git
 cd lotus-miner
-```
 
-# 环境配置
-将会安装必要的lib、校准时间、显卡驱动、swap内存
-```
 # 切换root
 sudo su
 # 执行安装
@@ -27,7 +25,7 @@ sudo su
 ```
 
 # 首次启动
-几个可以配置的环境变量，根据自己需求设置
+几个可以配置的环境变量，根据自己需求设置。
 ```
 # 设置国内的零知识证明参数下载源
 export IPFS_GATEWAY="https://proof-parameters.s3.cn-south-1.jdcloud-oss.com/ipfs/"
@@ -41,7 +39,6 @@ export FIL_PROOFS_PARAMETER_CACHE="$HOME/filecoin-proof-parameters"
 
 启动lotus。
 ```
-
 # 启动lotus
 nohup lotus > ~/lotus.log 2>&1 &
 
@@ -65,8 +62,10 @@ lotus-storage-miner init --actor=xxx --owner=xxxxx --no-local-storage
 # 取消ListenAddress和RemoteListenAddress前面的注释，并将IP改成局域网IP
 vi ~/.lotusstorage/config.toml
 
-# 启动miner
-nohup lotus-storage-miner run > ~/miner.log 2>&1 &
+# 启动miner。
+# --max-parallel表示每个worker允许的并行数量。
+# 当有 256 GB 内存、64 GB swap 和 1.4 TB 硬盘空闲的情况下，可以并行2个。
+nohup lotus-storage-miner run --max-parallel 2 > ~/miner.log 2>&1 &
 
 # storage attach，即告诉miner真正存数据的地方
 lotus-storage-miner storage attach --init=true --store=true /path/to/storage
@@ -96,3 +95,6 @@ lotus-seal-worker run --address=xxx.xxx.xxx.xxx:3456 > ~/worker.log 2>&1 &
 ```
 watch lotus-storage-miner info
 ```
+
+# TODO
+目前官方代码，在Window PoSt环节存在问题。所以，存力下降的问题暂时无法避免。
