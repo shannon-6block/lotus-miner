@@ -16,6 +16,14 @@ if [ $NEEDGPU -ne 0 ]; then
   ubuntu-drivers autoinstall
 fi
 
+# install ulimit
+ulimit -n 1048576
+sed -i "/nofile/d" /etc/security/limits.conf
+echo "* hard nofile 1048576" >> /etc/security/limits.conf
+echo "* soft nofile 1048576" >> /etc/security/limits.conf
+echo "root hard nofile 1048576" >> /etc/security/limits.conf
+echo "root soft nofile 1048576" >> /etc/security/limits.conf
+
 # setup SWAP, 64GB, swappiness=1
 SWAPSIZE=`swapon --show | awk 'NR==2 {print $3}'`
 if [ "$SWAPSIZE" != "64G" ]; then

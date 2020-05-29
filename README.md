@@ -22,7 +22,7 @@
 * 基于推荐配置，可以进行单机2个sector的并行运行，每日产出存力200 GB以上。
 
 # 安装配置
-将会安装挖矿程序、必要的库、校准时间、显卡驱动、swap内存（64 GB）。
+将会安装挖矿程序、必要的库、时间校准、显卡驱动、ulimit、swap内存（64 GB）。
 ```
 # 下载
 git clone https://github.com/shannon-6block/lotus-miner.git
@@ -30,8 +30,10 @@ cd lotus-miner
 
 # 切换至root账户
 sudo su
-# 执行安装（安装完后可以exit回到原来的账户）
+# 执行安装
 ./script/install.sh
+# 安装完后可以exit回到之前的账户
+# 如果是首次安装显卡驱动，需要重启以生效
 ```
 
 # 首次启动

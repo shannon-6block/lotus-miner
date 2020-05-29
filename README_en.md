@@ -29,8 +29,10 @@ cd lotus-miner
 
 # Switch to root account
 sudo su
-# Execute installation (after installation, you can exit and return to the original account)
+# Execute installation
 ./script/install.sh
+# After installation, you can exit and return to the previous account
+# If it is the first time installing the GPU driver, reboot is needed to take effect
 ```
 
 # Setup
