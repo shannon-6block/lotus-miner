@@ -20,6 +20,8 @@
 * 自动发现空闲worker，启动封装操作。
 * 程序退出后，再次启动都能恢复运行。如果出现不能恢复的情况，可以提issue。
 * 基于推荐配置，可以进行单机2个sector的并行运行，每日产出存力200 GB以上。
+* 自动设置FIL_PROOFS_MAXIMIZE_CACHING环境变量。
+* 默认不使用LOTUS_STORAGE_PATH来存储文件，分离目录。
 
 # 安装配置
 将会安装挖矿程序、必要的库、时间校准、显卡驱动、ulimit、swap内存（64 GB）。
@@ -54,12 +56,12 @@ lotus fetch-params --proving-params 32GiB
 启动lotus。
 ```
 # 启动lotus
-nohup lotus > ~/lotus.log 2>&1 &
+nohup lotus daemon > ~/lotus.log 2>&1 &
 
 # 查看日志
 tail -f ~/lotus.log
 
-# 生成account。需要去 https://faucet.testnet.filecoin.io/ 领取测试币和创建矿工账户
+# 生成account。需要去 https://t01000.miner.interopnet.kittyhawk.wtf/ 领取测试币和创建矿工账户
 lotus wallet new bls
 
 # 等待节点同步完成
@@ -69,8 +71,7 @@ lotus sync wait
 启动miner。需要先完成领取测试币、注册矿工、节点同步完成。
 ```
 # 使用矿工注册结果来初始化miner
-# 建议如下所示加上--no-local-storage参数，不用默认位置LOTUS_STORAGE_PATH存数据
-lotus-storage-miner init --actor=xxx --owner=xxxxx --no-local-storage
+lotus-storage-miner init --actor=xxx --owner=xxxxx
 
 # 如果miner和worker不在一台机器，需要配置miner的IP
 # 取消ListenAddress和RemoteListenAddress前面的注释，并将它们的IP改成局域网IP
@@ -96,9 +97,6 @@ lotus-storage-miner info
 ```
 # 如果miner和worker不在一台机器，需要将miner机器LOTUS_STORAGE_PATH下的api和token两个文件拷贝到worker机器的LOTUS_STORAGE_PATH下
 
-# 一定需要的环境变量
-export FIL_PROOFS_MAXIMIZE_CACHING=1
-
 # 可选的环境变量
 # 如下设置会让worker使用GPU计算PreCommit2。建议双显卡的情况下再使用，否则会报显存不够的错误。
 export FIL_PROOFS_USE_GPU_COLUMN_BUILDER=1
@@ -118,6 +116,8 @@ lotus-storage-miner storage list
 lotus-storage-miner workers list
 lotus-storage-miner sectors list
 ```
+
+或者使用区块浏览器，例如 https://interopnet.filfox.io/ ，查看。
 
 # TODO
 * 目前官方代码在Window PoSt部分存在问题。所以，存力有可能发生下降。为了避免这一问题，请不要进行过多手动操作。

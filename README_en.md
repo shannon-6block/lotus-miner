@@ -19,6 +19,8 @@ Not tested. If there is any problem, please raise an issue.
 * Automatically find idle workers and start sealing operation.
 * After the program exits, it can be resumed when it is started again. If there is an exception, please raise an issue.
 * Based on the recommended configuration, it is possible to run two sectors in a single machine in parallel, with a daily output of more than 200 GB.
+* Automatically set environment variable FIL_PROOFS_MAXIMIZE_CACHING.
+* Don't use LOTUS_STORAGE_PATH to store files, separating directories.
 
 # Installation
 The mining program, necessary libraries, time calibration , GPU driver, swap memory (64 GB) will be installed.
@@ -58,7 +60,7 @@ nohup lotus > ~/lotus.log 2>&1 &
 # View logs
 tail -f ~/lotus.log
 
-# Generate an account. Need to go to https://faucet.testnet.filecoin.io/ to get test coins and create a miner account.
+# Generate an account. Need to go to https://t01000.miner.interopnet.kittyhawk.wtf/ to get test coins and create a miner account.
 lotus wallet new bls
 
 # Wait for node synchronized
@@ -68,8 +70,7 @@ lotus sync wait
 Start miner. Need to complete the test coin getting, miner registering, and node synchronization before.
 ```
 # Use miner registration results to initialize miner
-# It is recommended to add the --no-local-storage parameter as shown below, instead of storing data in the default location LOTUS_STORAGE_PATH
-lotus-storage-miner init --actor=xxx --owner=xxxxx --no-local-storage
+lotus-storage-miner init --actor=xxx --owner=xxxxx
 
 # If miner and worker are not on the same machine, you need to configure the miner's IP
 # Cancel the comment in front of ListenAddress and RemoteListenAddress and change their IPs to LAN IPs
@@ -95,9 +96,6 @@ Start worker.
 ```
 # If miner and worker are not on the same machine, you need to copy the files of api and token under LOTUS_STORAGE_PATH of miner to LOTUS_STORAGE_PATH of worker
 
-# Required environment variable
-export FIL_PROOFS_MAXIMIZE_CACHING=1
-
 # Optional environment variables
 # The following setting will allow the worker to use the GPU to compute PreCommit2. It is recommended to use it in the case of dual GPUs, otherwise it will report an error of insufficient GPU memory.
 export FIL_PROOFS_USE_GPU_COLUMN_BUILDER=1
@@ -117,6 +115,8 @@ lotus-storage-miner storage list
 lotus-storage-miner workers list
 lotus-storage-miner sectors list
 ```
+
+Or you can use the block explorer, like https://interopnet.filfox.io/, to check it.
 
 # TODO
 * Currently, there is a problem with the official code in the Window PoSt part. Therefore, a decline of storage power may happen. To avoid this problem, please do not do too many manual operations.
