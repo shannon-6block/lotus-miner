@@ -53,7 +53,7 @@ export FIL_PROOFS_PARAMETER_CACHE="$HOME/filecoin-proof-parameters"
 # Set Chinese zero-knowledge proof parameter download source.
 export IPFS_GATEWAY="https://proof-parameters.s3.cn-south-1.jdcloud-oss.com/ipfs/"
 # Manually download the zero-knowledge proof parameters to the FIL_PROOFS_PARAMETER_CACHE directory, 200GB
-lotus fetch-params --proving-params 32GiB
+lotus fetch-params 32GiB
 ```
 
 Start lotus.

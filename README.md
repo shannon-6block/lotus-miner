@@ -54,7 +54,7 @@ export FIL_PROOFS_PARAMETER_CACHE="$HOME/filecoin-proof-parameters"
 # 设置国内的零知识证明参数下载源
 export IPFS_GATEWAY="https://proof-parameters.s3.cn-south-1.jdcloud-oss.com/ipfs/"
 # 手动下载零知识证明参数到FIL_PROOFS_PARAMETER_CACHE目录中，有200GB
-lotus fetch-params --proving-params 32GiB
+lotus fetch-params 32GiB
 ```
 
 启动lotus。
