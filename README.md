@@ -23,6 +23,10 @@
 * 自动设置FIL_PROOFS_MAXIMIZE_CACHING环境变量。
 * 默认不使用LOTUS_STORAGE_PATH来存储文件，分离目录。
 
+# 注意
+* 开始之前请确保有足够的空闲内存。
+* 请确保所有设备能够正常连接互联网。
+
 # 安装配置
 将会安装挖矿程序、必要的库、时间校准、显卡驱动、ulimit、swap内存（64 GB）。
 ```
@@ -55,13 +59,17 @@ lotus fetch-params --proving-params 32GiB
 
 启动lotus。
 ```
+# 确定版本
+lotus -v
+lotus version 0.4.16+git.d48181cd
+
 # 启动lotus
 nohup lotus daemon > ~/lotus.log 2>&1 &
 
 # 查看日志
 tail -f ~/lotus.log
 
-# 生成account。需要去 https://t01000.miner.interopnet.kittyhawk.wtf/ 领取测试币和创建矿工账户
+# 生成account。需要去 https://faucet.testnet.filecoin.io/ 领取测试币和创建矿工账户
 lotus wallet new bls
 
 # 等待节点同步完成

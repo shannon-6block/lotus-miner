@@ -1,7 +1,7 @@
 #!/bin/bash
 
 rm -rf lotus-miner.tar.gz cmd
-wget https://github.com/shannon-6block/lotus-miner/releases/download/interop.6.8.1/lotus-miner.tar.gz
+wget https://github.com/shannon-6block/lotus-miner/releases/download/test.0.4.0/lotus-miner.tar.gz
 mkdir cmd
 tar zxvf lotus-miner.tar.gz -C cmd/
 cp cmd/* /usr/local/bin/

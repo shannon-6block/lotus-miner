@@ -22,6 +22,10 @@ Not tested. If there is any problem, please raise an issue.
 * Automatically set environment variable FIL_PROOFS_MAXIMIZE_CACHING.
 * Don't use LOTUS_STORAGE_PATH to store files, separating directories.
 
+# Notice
+* Make sure there is enough spare RAM before you get started.
+* Make sure all your hardware can connect to the Internet.
+
 # Installation
 The mining program, necessary libraries, time calibration , GPU driver, swap memory (64 GB) will be installed.
 ```
@@ -54,13 +58,17 @@ lotus fetch-params --proving-params 32GiB
 
 Start lotus.
 ```
+# Check the version
+lotus -v
+lotus version 0.4.16+git.d48181cd
+
 # Start lotus
 nohup lotus > ~/lotus.log 2>&1 &
 
 # View logs
 tail -f ~/lotus.log
 
-# Generate an account. Need to go to https://t01000.miner.interopnet.kittyhawk.wtf/ to get test coins and create a miner account.
+# Generate an account. Need to go to https://faucet.testnet.filecoin.io/ to get test coins and create a miner account.
 lotus wallet new bls
 
 # Wait for node synchronized
