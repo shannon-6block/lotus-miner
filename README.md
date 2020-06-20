@@ -4,7 +4,7 @@
 # 推荐配置
 * CPU：AMD 3970X 或 Ryzen Threadripper 其他型号
 * 内存：256 GB
-* SSD：2 TB
+* SSD：2 TB * 2
 * 操作系统：Ubuntu 18.04
 
 # 最低配置
@@ -61,7 +61,7 @@ lotus fetch-params 32GiB
 ```
 # 确定版本
 lotus -v
-lotus version 0.4.16+git.d48181cd
+lotus version 0.4.17+git.045440aa
 
 # 启动lotus
 nohup lotus daemon > ~/lotus.log 2>&1 &
@@ -106,15 +106,24 @@ lotus-storage-miner info
 # 如果miner和worker不在一台机器，需要将miner机器LOTUS_STORAGE_PATH下的api和token两个文件拷贝到worker机器的LOTUS_STORAGE_PATH下
 
 # 可选的环境变量
-# 如下设置会让worker使用GPU计算PreCommit2。建议双显卡的情况下再使用，否则会报显存不够的错误。
+# 以下设置会让worker使用GPU计算PreCommit2。
 export FIL_PROOFS_USE_GPU_COLUMN_BUILDER=1
-# 如下设置会让worker不使用GPU计算Commit2，而改用CPU。
+export FIL_PROOFS_USE_GPU_TREE_BUILDER=1
+# 以下设置会让worker不使用GPU计算Commit2，而改用CPU。
 export BELLMAN_NO_GPU=true
+# 以下设置将会让worker显示更详细的日志
+export RUST_BACKTRACE=full
+export RUST_LOG=debug
 
 # 启动worker，需要加入局域网IP
-lotus-seal-worker run --address=xxx.xxx.xxx.xxx:3456 > ~/worker.log 2>&1 &
+lotus-seal-worker run --address xxx.xxx.xxx.xxx:3456 > ~/worker.log 2>&1 &
 # 查看日志
 tail -f ~/miner.log
+```
+
+进阶：worker使用多个SSD
+```
+lotus-seal-worker run --address xxx.xxx.xxx.xxx:3456 --attach /path/to/another/ssd/directory > ~/worker.log 2>&1 &
 ```
 
 观察运行情况。在miner机器执行。常用命令列举如下。
@@ -125,10 +134,10 @@ lotus-storage-miner workers list
 lotus-storage-miner sectors list
 ```
 
-或者使用区块浏览器，例如 https://interopnet.filfox.io/ ，查看。
+或者使用区块浏览器，例如 https://filfox.io/ ，查看。
 
 # TODO
-* 目前官方代码在Window PoSt部分存在问题。所以，存力有可能发生下降。为了避免这一问题，请不要进行过多手动操作。
+* 有时会因为worker运行任务过多，资源不够，导致部分sector出现短时间的SealPreCommit1Failed状态，可忽略。
 * 程序在推荐配置下顺利运行，没有做过其他环境的测试，如果遇到问题可以提issue。
 * 会及时合入官方的代码改动。
 * 程序经过一段时间稳定之后，会再将算法优化合入。

@@ -3,7 +3,7 @@
 # Recommended
 * CPU：AMD 3970X or other models of Ryzen Threadripper
 * RAM：256 GB
-* SSD：2 TB
+* SSD：2 TB * 2
 * OS：Ubuntu 18.04
 
 # Minimum
@@ -60,7 +60,7 @@ Start lotus.
 ```
 # Check the version
 lotus -v
-lotus version 0.4.16+git.d48181cd
+lotus version 0.4.17+git.045440aa
 
 # Start lotus
 nohup lotus > ~/lotus.log 2>&1 &
@@ -105,15 +105,24 @@ Start worker.
 # If miner and worker are not on the same machine, you need to copy the files of api and token under LOTUS_STORAGE_PATH of miner to LOTUS_STORAGE_PATH of worker
 
 # Optional environment variables
-# The following setting will allow the worker to use the GPU to compute PreCommit2. It is recommended to use it in the case of dual GPUs, otherwise it will report an error of insufficient GPU memory.
+# The following settings will allow the worker to use the GPU to compute PreCommit2.
 export FIL_PROOFS_USE_GPU_COLUMN_BUILDER=1
+export FIL_PROOFS_USE_GPU_TREE_BUILDER=1
 # The following setting will cause the worker to use the CPU instead of the GPU to compute Commit2.
 export BELLMAN_NO_GPU=true
+# The following settings will allow the worker to show more detailed logs.
+export RUST_BACKTRACE=full
+export RUST_LOG=debug
 
 # Start worker, need to add LAN IP
-lotus-seal-worker run --address=xxx.xxx.xxx.xxx:3456 > ~/worker.log 2>&1 &
+lotus-seal-worker run --address xxx.xxx.xxx.xxx:3456 > ~/worker.log 2>&1 &
 # View logs
 tail -f ~/miner.log
+```
+
+Advanced: Use multiple SSDs for the worker
+```
+lotus-seal-worker run --address xxx.xxx.xxx.xxx:3456 --attach /path/to/another/ssd/directory > ~/worker.log 2>&1 &
 ```
 
 Observe the operation. Executed on the miner machine. commonly used commands are listed as follows.
@@ -124,10 +133,10 @@ lotus-storage-miner workers list
 lotus-storage-miner sectors list
 ```
 
-Or you can use the block explorer, like https://interopnet.filfox.io/, to check it.
+Or you can use the block explorer, like https://filfox.io/, to check it.
 
 # TODO
-* Currently, there is a problem with the official code in the Window PoSt part. Therefore, a decline of storage power may happen. To avoid this problem, please do not do too many manual operations.
+* Due to handling too many tasks and lack of resources of the worker, sometimes, part of sectors will stay in the state of SealPreCommit1Failed for a short while, as can be ignored.
 * The program runs smoothly under the recommended configuration, and has not been tested in other environments. If you encounter problems, please raise an issue.
 * The official code changes will be merged in time.
 * After the program is stable for a period, the algorithm optimization will be merged.
