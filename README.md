@@ -1,10 +1,13 @@
 # lotus-miner
 [English](README_en.md)
 
+石榴矿池lotus-miner社区版，持续免费向公众提供。
+
 # 推荐配置
-* CPU：AMD 3970X 或 Ryzen Threadripper 其他型号
+* CPU：AMD 3960X 或 Ryzen Threadripper 其他型号
 * 内存：256 GB
 * SSD：2 TB * 2
+* GPU：NVIDIA 2080 Ti
 * 操作系统：Ubuntu 18.04
 
 # 最低配置

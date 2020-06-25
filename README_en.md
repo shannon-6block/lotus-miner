@@ -1,9 +1,11 @@
 # lotus-miner
+6block lotus-miner community version, which is continuously freely available to the public.
 
 # Recommended
-* CPU：AMD 3970X or other models of Ryzen Threadripper
+* CPU：AMD 3960X or other models of Ryzen Threadripper
 * RAM：256 GB
 * SSD：2 TB * 2
+* GPU：NVIDIA 2080 Ti
 * OS：Ubuntu 18.04
 
 # Minimum
