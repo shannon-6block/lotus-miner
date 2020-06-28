@@ -141,6 +141,7 @@ lotus-storage-miner sectors list
 
 # TODO
 * 有时会因为worker运行任务过多，资源不够，导致部分sector出现短时间的SealPreCommit1Failed状态，可忽略。
+* 因为CPU和GPU计算Commit2的时间相近，所以当GPU被占用时，Commit2会降级为CPU计算，导致出现CL_MEM_OBJECT_ALLOCATION_FAILURE错误，可忽略。
 * 程序在推荐配置下顺利运行，没有做过其他环境的测试，如果遇到问题可以提issue。
 * 会及时合入官方的代码改动。
-* 程序经过一段时间稳定之后，会再将算法优化合入。
+* 运行前请保证可用内存和SSD空间充裕。
