@@ -22,7 +22,7 @@
 * 封装操作完全在worker完成，除了最终sealed sector（约33 GB）回传miner之外没有网络传输。
 * 自动发现空闲worker，启动封装操作。
 * 程序退出后，再次启动都能恢复运行。如果出现不能恢复的情况，可以提issue。
-* 基于推荐配置，可以进行单机2个sector的并行运行，每日产出存力200 GB以上。
+* 基于推荐配置，可以进行单机3-4个sector的并行运行，每日产出存力200 GB以上。
 * 自动设置FIL_PROOFS_MAXIMIZE_CACHING环境变量。
 * 默认不使用LOTUS_STORAGE_PATH来存储文件，分离目录。
 
@@ -124,7 +124,7 @@ lotus-seal-worker run --address xxx.xxx.xxx.xxx:3456 > ~/worker.log 2>&1 &
 tail -f ~/miner.log
 ```
 
-进阶：worker使用多个SSD
+进阶：worker使用多个SSD路径用于封装，注意并行数也会随之增加。
 ```
 lotus-seal-worker run --address xxx.xxx.xxx.xxx:3456 --attach /path/to/another/ssd/directory > ~/worker.log 2>&1 &
 ```

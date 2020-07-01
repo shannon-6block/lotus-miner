@@ -20,7 +20,7 @@ Not tested. If there is any problem, please raise an issue.
 * The sealing operation is completely completed by the worker. There is no network transmission except the final sealed sector (about 33 GB) back to the miner.
 * Automatically find idle workers and start sealing operation.
 * After the program exits, it can be resumed when it is started again. If there is an exception, please raise an issue.
-* Based on the recommended configuration, it is possible to run two sectors in a single machine in parallel, with a daily output of more than 200 GB.
+* Based on the recommended configuration, it is possible to run 2-3 sectors in a single machine in parallel, with a daily output of more than 200 GB.
 * Automatically set environment variable FIL_PROOFS_MAXIMIZE_CACHING.
 * Don't use LOTUS_STORAGE_PATH to store files, separating directories.
 
@@ -122,7 +122,7 @@ lotus-seal-worker run --address xxx.xxx.xxx.xxx:3456 > ~/worker.log 2>&1 &
 tail -f ~/miner.log
 ```
 
-Advanced: Use multiple SSDs for the worker
+Advanced: worker uses multiple SSD paths for sealing, which will also increase parallel sectors.
 ```
 lotus-seal-worker run --address xxx.xxx.xxx.xxx:3456 --attach /path/to/another/ssd/directory > ~/worker.log 2>&1 &
 ```
