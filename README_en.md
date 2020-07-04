@@ -62,7 +62,7 @@ Start lotus.
 ```
 # Check the version
 lotus -v
-lotus version 0.4.17+git.045440aa
+lotus version 0.4.1+git.ee7bdf38
 
 # Start lotus
 nohup lotus > ~/lotus.log 2>&1 &
@@ -139,7 +139,6 @@ Or you can use the block explorer, like https://filfox.io/, to check it.
 
 # TODO
 * Due to handling too many tasks and lack of resources of the worker, sometimes, part of sectors will stay in the state of SealPreCommit1Failed for a short while, as can be ignored.
-* Because time is similar for CPU and GPU to calculate Commit2, when the GPU is in use, Commit2 will be downgraded to use CPU, resulting in CL_MEM_OBJECT_ALLOCATION_FAILURE errors, which can be ignored.
 * The program runs smoothly under the recommended configuration, and has not been tested in other environments. If you encounter problems, please raise an issue.
 * The official code changes will be merged in time.
 * Before running, please ensure that available memory and SSD spaces are sufficient.

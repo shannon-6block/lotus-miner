@@ -64,7 +64,7 @@ lotus fetch-params 32GiB
 ```
 # 确定版本
 lotus -v
-lotus version 0.4.17+git.045440aa
+lotus version 0.4.1+git.ee7bdf38
 
 # 启动lotus
 nohup lotus daemon > ~/lotus.log 2>&1 &
@@ -141,7 +141,6 @@ lotus-storage-miner sectors list
 
 # TODO
 * 有时会因为worker运行任务过多，资源不够，导致部分sector出现短时间的SealPreCommit1Failed状态，可忽略。
-* 因为CPU和GPU计算Commit2的时间相近，所以当GPU被占用时，Commit2会降级为CPU计算，导致出现CL_MEM_OBJECT_ALLOCATION_FAILURE错误，可忽略。
 * 程序在推荐配置下顺利运行，没有做过其他环境的测试，如果遇到问题可以提issue。
 * 会及时合入官方的代码改动。
 * 运行前请保证可用内存和SSD空间充裕。
