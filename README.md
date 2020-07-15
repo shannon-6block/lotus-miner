@@ -139,6 +139,12 @@ lotus-storage-miner sectors list
 
 或者使用区块浏览器，例如 https://filfox.io/ ，查看。
 
+如果sector出错，可以查看sector日志，找到出错原因。或者直接删除sector。以0号sector为例。
+```
+lotus-storage-miner sectors status --log 0
+lotus-storage-miner sectors update-state --really-do-it 0 Removing
+```
+
 # TODO
 * 有时会因为worker运行任务过多，资源不够，导致部分sector出现短时间的SealPreCommit1Failed状态，可忽略。
 * 程序在推荐配置下顺利运行，没有做过其他环境的测试，如果遇到问题可以提issue。

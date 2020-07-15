@@ -137,6 +137,12 @@ lotus-storage-miner sectors list
 
 Or you can use the block explorer, like https://filfox.io/, to check it.
 
+If any sector has error, you can check out the sector log for the reason of the error. Or simply remove the sector. Take sector 0 as an example.
+```
+lotus-storage-miner sectors status --log 0
+lotus-storage-miner sectors update-state --really-do-it 0 Removing
+```
+
 # TODO
 * Due to handling too many tasks and lack of resources of the worker, sometimes, part of sectors will stay in the state of SealPreCommit1Failed for a short while, as can be ignored.
 * The program runs smoothly under the recommended configuration, and has not been tested in other environments. If you encounter problems, please raise an issue.
