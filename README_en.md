@@ -65,7 +65,7 @@ lotus -v
 lotus version 0.4.1+git.ee7bdf38
 
 # Start lotus
-nohup lotus > ~/lotus.log 2>&1 &
+nohup lotus daemon > ~/lotus.log 2>&1 &
 
 # View logs
 tail -f ~/lotus.log
