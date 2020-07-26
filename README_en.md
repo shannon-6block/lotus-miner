@@ -130,8 +130,9 @@ Observe the operation. Executed on the miner machine. commonly used commands are
 ```
 lotus-miner info
 lotus-miner storage list
-lotus-miner workers list
 lotus-miner sectors list
+lotus-miner sealing workers
+lotus-miner sealing jobs
 ```
 
 Or you can use the block explorer, like [Filfox](https://calibration.filfox.io/) , to check it.

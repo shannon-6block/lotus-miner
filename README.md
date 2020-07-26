@@ -131,8 +131,9 @@ nohup lotus-miner run --max-parallel 2 > ~/miner.log 2>&1 &
 ```
 lotus-miner info
 lotus-miner storage list
-lotus-miner workers list
 lotus-miner sectors list
+lotus-miner sealing workers
+lotus-miner sealing jobs
 ```
 
 或者使用区块浏览器，例如 [Filfox](https://calibration.filfox.io/) ，查看。
