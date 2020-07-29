@@ -54,7 +54,7 @@ Start lotus.
 ```
 # Check the version
 lotus -v
-lotus version 0.4.1+git.2a77bed5
+lotus version 0.4.1+git.46050ade
 
 # Start lotus
 nohup lotus daemon > ~/lotus.log 2>&1 &
@@ -69,7 +69,7 @@ lotus wallet new bls
 lotus sync wait
 ```
 
-Use the address to get testnet coins from the [Slack](https://filecoinproject.slack.com/archives/C017CCH1MHB/p1595605341328200).
+Use the address to get testnet coins from the [Slack](https://filecoinproject.slack.com/archives/C017CCH1MHB).
 
 Start miner. Need to complete the test coin getting, miner registering, and node synchronization before.
 ```
@@ -120,10 +120,23 @@ tail -f ~/miner.log
 Advanced: control concurrency
 ```
 # worker uses multiple sealing paths, which will increase concurrency.
-lotus-worker run --address xxx.xxx.xxx.xxx:3456 --attach /path/to/another/ssd/directory > ~/worker.log 2>&1 &
+lotus-worker run --address xxx.xxx.xxx.xxx:3456 --attach /path/to/another/ssd/directory
 
-# set --max-parallel at the miner, which stands for the number of sectors allowed for each sealing storage
-nohup lotus-miner run --max-parallel 2 > ~/miner.log 2>&1 &
+# set ParallelSealLimit on the miner, which stands for the number of sectors allowed for each sealing storage
+vi ~/.lotusminer/config.toml
+```
+
+Advanced: separate sealing phases (untested)
+```
+# Please use the lotus-miner.separate.tar.gz package in the release instead
+# PreCommit1 worker
+lotus-worker run --address xxx.xxx.xxx.xxx:3456 --precommit2 false --commit false
+# PreCommit2 & Commit worker
+lotus-worker run --address xxx.xxx.xxx.xxx:3456 --addpiece false --precommit1 false
+# 独立的PreCommit2 worker
+lotus-worker run --address xxx.xxx.xxx.xxx:3456 --addpiece false --precommit1 false --commit false
+# 独立的Commit worker
+lotus-worker run --address xxx.xxx.xxx.xxx:3456 --addpiece false --precommit1 false --precommit2 false
 ```
 
 Observe the operation. Executed on the miner machine. commonly used commands are listed as follows.

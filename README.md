@@ -56,7 +56,7 @@ lotus fetch-params 32GiB
 ```
 # 确定版本
 lotus -v
-lotus version 0.4.1+git.2a77bed5
+lotus version 0.4.1+git.46050ade
 
 # 启动lotus
 nohup lotus daemon > ~/lotus.log 2>&1 &
@@ -71,7 +71,7 @@ lotus wallet new bls
 lotus sync wait
 ```
 
-用address去 [Slack](https://filecoinproject.slack.com/archives/C017CCH1MHB/p1595605341328200) 领取测试币。
+用address去 [Slack](https://filecoinproject.slack.com/archives/C017CCH1MHB) 领取测试币。
 
 启动miner。
 ```
@@ -121,10 +121,23 @@ tail -f ~/miner.log
 进阶：控制并发。
 ```
 # worker使用多个封装路径，并发数也会随之增加。
-lotus-worker run --address xxx.xxx.xxx.xxx:3456 --attach /path/to/another/ssd/directory > ~/worker.log 2>&1 &
+lotus-worker run --address xxx.xxx.xxx.xxx:3456 --attach /path/to/another/ssd/directory
 
-# 在miner上设置--max-parallel，表示每个封装路径所允许的并发数。
-nohup lotus-miner run --max-parallel 2 > ~/miner.log 2>&1 &
+# 在miner上设置ParallelSealLimit，表示每个封装路径所允许的并发数。
+vi ~/.lotusminer/config.toml
+```
+
+进阶：分离封装阶段（未测试）。
+```
+# 请使用Release中的lotus-miner.separate.tar.gz包代替
+# PreCommit1 worker
+lotus-worker run --address xxx.xxx.xxx.xxx:3456 --precommit2 false --commit false
+# PreCommit2 & Commit worker
+lotus-worker run --address xxx.xxx.xxx.xxx:3456 --addpiece false --precommit1 false
+# 独立的PreCommit2 worker
+lotus-worker run --address xxx.xxx.xxx.xxx:3456 --addpiece false --precommit1 false --commit false
+# 独立的Commit worker
+lotus-worker run --address xxx.xxx.xxx.xxx:3456 --addpiece false --precommit1 false --precommit2 false
 ```
 
 观察运行情况。在miner机器执行。常用命令列举如下。
