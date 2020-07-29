@@ -133,9 +133,9 @@ Advanced: separate sealing phases (untested)
 lotus-worker run --address xxx.xxx.xxx.xxx:3456 --precommit2 false --commit false
 # PreCommit2 & Commit worker
 lotus-worker run --address xxx.xxx.xxx.xxx:3456 --addpiece false --precommit1 false
-# 独立的PreCommit2 worker
+# standalone PreCommit2 worker
 lotus-worker run --address xxx.xxx.xxx.xxx:3456 --addpiece false --precommit1 false --commit false
-# 独立的Commit worker
+# standalone Commit worker
 lotus-worker run --address xxx.xxx.xxx.xxx:3456 --addpiece false --precommit1 false --precommit2 false
 ```
 
