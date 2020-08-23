@@ -56,7 +56,7 @@ lotus fetch-params 32GiB
 ```
 # 确定版本
 lotus -v
-lotus version 0.4.4+git.893c5f67.dirty
+lotus version 0.4.6+git.23d6d152.dirty
 
 # 启动lotus
 nohup lotus daemon > ~/lotus.log 2>&1 &
@@ -103,6 +103,8 @@ lotus-miner info
 # 如果miner和worker不在一台机器，需要将miner机器LOTUS_STORAGE_PATH下的api和token两个文件拷贝到worker机器的LOTUS_STORAGE_PATH下
 
 # 可选的环境变量
+# 以下设置会让PreCommit1使用更多的内存并且计算更快，在推荐的硬件配置上建议使用
+export FIL_PROOFS_SDR_PARENTS_CACHE_SIZE=1073741824
 # 以下设置会让worker使用GPU计算PreCommit2。
 export FIL_PROOFS_USE_GPU_COLUMN_BUILDER=1
 export FIL_PROOFS_USE_GPU_TREE_BUILDER=1
@@ -125,6 +127,8 @@ lotus-worker run --address xxx.xxx.xxx.xxx:3456 --attach /path/to/another/ssd/di
 
 # 在miner上设置ParallelSealLimit，表示每个封装路径所允许的并发数。
 vi ~/.lotusminer/config.toml
+
+# 在推荐的硬件配置上，推荐的总并发数是6。
 ```
 
 进阶：分离封装阶段（未测试）。

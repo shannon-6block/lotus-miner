@@ -54,7 +54,7 @@ Start lotus.
 ```
 # Check the version
 lotus -v
-lotus version 0.4.4+git.893c5f67.dirty
+lotus version 0.4.6+git.23d6d152.dirty
 
 # Start lotus
 nohup lotus daemon > ~/lotus.log 2>&1 &
@@ -102,6 +102,8 @@ Start worker.
 # If miner and worker are not on the same machine, you need to copy the files of api and token under LOTUS_STORAGE_PATH of miner to LOTUS_STORAGE_PATH of worker
 
 # Optional environment variables
+# The following setting will allow PreCommit1 to use more RAM and have a higher speed, which we suggest to set on the recommended hardware.
+export FIL_PROOFS_SDR_PARENTS_CACHE_SIZE=1073741824
 # The following settings will allow the worker to use the GPU to compute PreCommit2.
 export FIL_PROOFS_USE_GPU_COLUMN_BUILDER=1
 export FIL_PROOFS_USE_GPU_TREE_BUILDER=1
@@ -124,6 +126,8 @@ lotus-worker run --address xxx.xxx.xxx.xxx:3456 --attach /path/to/another/ssd/di
 
 # set ParallelSealLimit on the miner, which stands for the number of sectors allowed for each sealing storage
 vi ~/.lotusminer/config.toml
+
+# on the recommended hardware, the recommended concurrency is in total 6.
 ```
 
 Advanced: separate sealing phases (untested)
