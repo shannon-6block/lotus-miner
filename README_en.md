@@ -54,7 +54,7 @@ Start lotus.
 ```
 # Check the version
 lotus -v
-lotus version 0.4.6+git.23d6d152.dirty
+lotus version 0.4.6+git.b4ca4a3b
 
 # Start lotus
 nohup lotus daemon > ~/lotus.log 2>&1 &
@@ -103,6 +103,7 @@ Start worker.
 
 # Optional environment variables
 # The following setting will allow PreCommit1 to use more RAM and have a higher speed, which we suggest to set on the recommended hardware.
+# You need to set it both for miner and worker
 export FIL_PROOFS_SDR_PARENTS_CACHE_SIZE=1073741824
 # The following settings will allow the worker to use the GPU to compute PreCommit2.
 export FIL_PROOFS_USE_GPU_COLUMN_BUILDER=1
