@@ -54,7 +54,7 @@ Start lotus.
 ```
 # Check the version
 lotus -v
-lotus version 0.5.7+git.e8946983
+lotus version 0.6.0+git.b6856fef
 
 # Start lotus
 nohup lotus daemon > ~/lotus.log 2>&1 &
