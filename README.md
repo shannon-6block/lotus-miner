@@ -12,7 +12,8 @@
 
 # 特点
 * 首次启动之后，以后所有操作自动化，无需人工干预。
-* 支持存储接单。
+* 优化了存储和检索订单。
+* 优化了区块链同步。
 * 封装操作完全在worker完成，除了最终sealed sector（约33 GB）回传miner之外没有网络传输。
 * 自动发现空闲worker，启动封装操作。
 * 程序退出后，再次启动都能恢复运行。如果出现不能恢复的情况，可以提issue。
@@ -56,7 +57,7 @@ lotus fetch-params 32GiB
 ```
 # 确定版本
 lotus -v
-lotus version 0.7.0+git.c60eaef6
+lotus version 0.7.1+6block+git.a7a47d61.1600421862
 
 # 启动lotus
 nohup lotus daemon > ~/lotus.log 2>&1 &

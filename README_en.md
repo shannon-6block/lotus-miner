@@ -10,7 +10,8 @@
 
 # Features
 * After the first start-up, all subsequent operations are automate without any manual intervention.
-* Support storage deals.
+* Improved storage and retrieve deals.
+* Improved the sync of blockchain.
 * The sealing operation is completely completed by the worker. There is no network transmission except the final sealed sector (about 33 GB) back to the miner.
 * Automatically find idle workers and start sealing operation.
 * After the program exits, it can be resumed when it is started again. If there is an exception, please raise an issue.
@@ -54,7 +55,7 @@ Start lotus.
 ```
 # Check the version
 lotus -v
-lotus version 0.7.0+git.c60eaef6
+lotus version 0.7.1+6block+git.a7a47d61.1600421862
 
 # Start lotus
 nohup lotus daemon > ~/lotus.log 2>&1 &
