@@ -123,6 +123,8 @@ tail -f ~/miner.log
 ```
 
 进阶：控制并发。
+我们可以通过以下方式让worker同时处理多个sector。
+虽然最终的计算并行度仍然取决于worker的内存，但增加并发可以让worker在部分sector处于WaitSeed的时候计算资源不闲置。
 ```
 # worker使用多个封装路径，并发数也会随之增加。
 lotus-worker run --address xxx.xxx.xxx.xxx:3456 --attach /path/to/another/ssd/directory
@@ -133,17 +135,11 @@ vi ~/.lotusminer/config.toml
 # 在推荐的硬件配置上，推荐的总并发数是6。
 ```
 
-进阶：分离封装阶段（未测试）。
+进阶：将封装后的sector文件存至共享目录。
+如果miner所attach的存储路径也能在worker上以同样的路径访问到，则worker可以在FinalizeSector阶段直接将sector文件传至共享目录，而不必传回给miner。
 ```
-# 请使用Release中的lotus-miner.separate.tar.gz包代替
-# PreCommit1 worker
-lotus-worker run --address xxx.xxx.xxx.xxx:3456 --precommit2 false --commit false
-# PreCommit2 & Commit worker
-lotus-worker run --address xxx.xxx.xxx.xxx:3456 --addpiece false --precommit1 false
-# 独立的PreCommit2 worker
-lotus-worker run --address xxx.xxx.xxx.xxx:3456 --addpiece false --precommit1 false --commit false
-# 独立的Commit worker
-lotus-worker run --address xxx.xxx.xxx.xxx:3456 --addpiece false --precommit1 false --precommit2 false
+# 设置FetchToShared = true
+vi ~/.lotusminer/config.toml
 ```
 
 观察运行情况。在miner机器执行。常用命令列举如下。

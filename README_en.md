@@ -121,7 +121,9 @@ lotus-worker run --address xxx.xxx.xxx.xxx:3456 > ~/worker.log 2>&1 &
 tail -f ~/miner.log
 ```
 
-Advanced: control concurrency
+Advanced: control concurrency.
+We can allow the worker to deal with multiple sectors at the same time by the following.
+Although the final computational parallelism still depends on the worker's RAM, increasing concurrency can make the worker's computational resources not idle when some sectors are in WaitSeed.
 ```
 # worker uses multiple sealing paths, which will increase concurrency.
 lotus-worker run --address xxx.xxx.xxx.xxx:3456 --attach /path/to/another/ssd/directory
@@ -132,17 +134,11 @@ vi ~/.lotusminer/config.toml
 # on the recommended hardware, the recommended concurrency is in total 6.
 ```
 
-Advanced: separate sealing phases (untested)
+Advanced: fetch final sector files to shared directories.
+If the storage path attached to the miner can also be accessed through the same path on the worker, the worker can directly transfer the sector file to the shared directory during the FinalizeSector phase, instead of transferring it back to the miner.
 ```
-# Please use the lotus-miner.separate.tar.gz package in the release instead
-# PreCommit1 worker
-lotus-worker run --address xxx.xxx.xxx.xxx:3456 --precommit2 false --commit false
-# PreCommit2 & Commit worker
-lotus-worker run --address xxx.xxx.xxx.xxx:3456 --addpiece false --precommit1 false
-# standalone PreCommit2 worker
-lotus-worker run --address xxx.xxx.xxx.xxx:3456 --addpiece false --precommit1 false --commit false
-# standalone Commit worker
-lotus-worker run --address xxx.xxx.xxx.xxx:3456 --addpiece false --precommit1 false --precommit2 false
+# set FetchToShared = true
+vi ~/.lotusminer/config.toml
 ```
 
 Observe the operation. Executed on the miner machine. commonly used commands are listed as follows.
