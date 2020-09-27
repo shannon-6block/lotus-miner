@@ -46,6 +46,6 @@ fi
 nvidia-smi
 NEEDGPU=$?
 if [ $NEEDGPU -ne 0 ]; then
-  ubuntu-drivers autoinstall
+  apt install -y nvidia-driver-440-server
   echo "reboot to make the GPU to take effect!"
 fi
