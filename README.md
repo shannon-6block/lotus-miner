@@ -92,7 +92,7 @@ nohup lotus-miner run > ~/miner.log 2>&1 &
 # 查看日志
 tail -f ~/miner.log
 
-# storage attach，即告诉miner真正存储数据的地方。请选择机械硬盘或网盘下的目录
+# storage attach，即告诉miner真正存储数据的地方。请选择机械硬盘或网盘下不存在的新目录。
 lotus-miner storage attach /path/to/storage
 
 # 查看miner信息

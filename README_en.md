@@ -91,7 +91,7 @@ nohup lotus-miner run > ~/miner.log 2>&1 &
 # View logs
 tail -f ~/miner.log
 
-# storage attach, which tells the miner where to store the data actually. Please choose directories under hard disks or network disks
+# storage attach, which tells the miner where to store the data actually. Please choose a non-existing new directory under a hard disk or a network disk
 lotus-miner storage attach /path/to/storage
 
 # View miner information
