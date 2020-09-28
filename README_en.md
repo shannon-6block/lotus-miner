@@ -132,6 +132,8 @@ lotus-worker run --address xxx.xxx.xxx.xxx:3456 --attach /path/to/another/ssd/di
 vi ~/.lotusminer/config.toml
 
 # on the recommended hardware, the recommended concurrency is in total 6.
+# If you set ParallelSealLimit to p on the miner and attached n sealing paths on the worker, since the worker starts with a WORKER_PATH as sealing path, the concurrency of the worker is in total p * (n + 1 ).
+# When setting the concurrency, you need to consider the size of the SSD where the sealing path is located. Because each sector consumes 520GB of space, the size of the SSD where each sealing path is located should not be less than 520GB * p.
 ```
 
 Advanced: fetch final sector files to shared directories.
