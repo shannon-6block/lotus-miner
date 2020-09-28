@@ -133,6 +133,8 @@ lotus-worker run --address xxx.xxx.xxx.xxx:3456 --attach /path/to/another/ssd/di
 vi ~/.lotusminer/config.toml
 
 # 在推荐的硬件配置上，推荐的总并发数是6。
+# 如果在miner上设置ParallelSealLimit为p，在worker上attach了n个封装路径，由于worker启动就带一个WORKER_PATH作为封装路径，所以该worker的总并发数为 p * ( n + 1 )。
+# 设置并发数时需要考虑封装路径所在SSD的大小，因为每个sector会消耗520GB的空间，所以每个封装路径所在SSD的大小应不小于 520GB * p。
 ```
 
 进阶：将封装后的sector文件存至共享目录。
