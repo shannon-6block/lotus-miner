@@ -43,8 +43,8 @@ sudo su
 ```
 # lotus、miner、worker、零知识证明参数的目录。建议设置为SSD上的目录
 export LOTUS_PATH="$HOME/.lotus"
-export LOTUS_STORAGE_PATH="$HOME/.lotusminer"
-export WORKER_PATH="$HOME/.lotusworker"
+export LOTUS_MINER_PATH="$HOME/.lotusminer"
+export LOTUS_WORKER_PATH="$HOME/.lotusworker"
 export FIL_PROOFS_PARAMETER_CACHE="$HOME/filecoin-proof-parameters"
 
 # 设置国内的零知识证明参数下载源
@@ -117,7 +117,7 @@ export RUST_BACKTRACE=full
 export RUST_LOG=debug
 
 # 启动worker，需要加入局域网IP
-lotus-worker run --address xxx.xxx.xxx.xxx:3456 > ~/worker.log 2>&1 &
+lotus-worker run --listen xxx.xxx.xxx.xxx:3456 > ~/worker.log 2>&1 &
 # 查看日志
 tail -f ~/miner.log
 ```
