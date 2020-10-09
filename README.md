@@ -57,7 +57,7 @@ lotus fetch-params 32GiB
 ```
 # 确定版本
 lotus -v
-lotus version 0.8.0+6block+git.a696dd70.1601114956
+lotus version 0.9.0+6block+git.762b5cb7.1602217518
 
 # 启动lotus
 nohup lotus daemon > ~/lotus.log 2>&1 &
@@ -110,8 +110,6 @@ export FIL_PROOFS_SDR_PARENTS_CACHE_SIZE=1073741824
 # 以下设置会让worker使用GPU计算PreCommit2。
 export FIL_PROOFS_USE_GPU_COLUMN_BUILDER=1
 export FIL_PROOFS_USE_GPU_TREE_BUILDER=1
-# 以下设置会让worker不使用GPU计算Commit2，而改用CPU。
-export BELLMAN_NO_GPU=true
 # 以下设置将会让worker显示更详细的日志
 export RUST_BACKTRACE=full
 export RUST_LOG=debug

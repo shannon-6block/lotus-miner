@@ -55,7 +55,7 @@ Start lotus.
 ```
 # Check the version
 lotus -v
-lotus version 0.8.0+6block+git.a696dd70.1601114956
+lotus version 0.9.0+6block+git.762b5cb7.1602217518
 
 # Start lotus
 nohup lotus daemon > ~/lotus.log 2>&1 &
@@ -109,8 +109,6 @@ export FIL_PROOFS_SDR_PARENTS_CACHE_SIZE=1073741824
 # The following settings will allow the worker to use the GPU to compute PreCommit2.
 export FIL_PROOFS_USE_GPU_COLUMN_BUILDER=1
 export FIL_PROOFS_USE_GPU_TREE_BUILDER=1
-# The following setting will cause the worker to use the CPU instead of the GPU to compute Commit2.
-export BELLMAN_NO_GPU=true
 # The following settings will allow the worker to show more detailed logs.
 export RUST_BACKTRACE=full
 export RUST_LOG=debug
