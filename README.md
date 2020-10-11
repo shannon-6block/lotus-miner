@@ -142,6 +142,50 @@ vi ~/.lotusminer/config.toml
 vi ~/.lotusminer/config.toml
 ```
 
+进阶：WindowPoSt账户分离，避免MessagePool堵塞时WindowPoSt无法上链导致的掉算力问题
+```
+# 新增一个账户用于WindowPoSt
+$ lotus wallet new bls
+t3defg...
+
+# 然后往新地址里打100FIL用于做WindowPoSt
+$ lotus send --from <address> t3defg... 100
+
+# 把这个地址设置成发WindowPoSt消息的地址
+$ lotus-miner actor control set --really-do-it t3defg...
+Add t3defg...
+Message CID: bafy2..
+
+# 等待消息上链
+$ lotus state wait-msg bafy2..
+...
+Exit Code: 0
+...
+
+# 检查矿工控制地址列表以确保正确添加了地址
+$ lotus-miner actor control list
+name       ID      key           use    balance
+owner      t01111  t3abcd...  other  300 FIL
+worker     t01111  t3abcd...  other  300 FIL
+control-0  t02222  t3defg...  post   100 FIL
+```
+
+进阶：设置ulimit，以lotus-miner为例
+```
+# 获取lotus-miner的PID(如下所示，PID为2333)
+$ ps -ef | grep lotus-miner
+root       2333 6666 88 Nov31 ?        1-02:50:00 lotus-miner run
+# 为lotus-miner设置ulimit
+sudo prlimit --nofile=1048576 --nproc=unlimited --stack=1048576 --rtprio=99 --nice=-19 --pid 2333
+```
+
+进阶：新建lotus节点时导入快照快速同步
+```
+# 获取快照文件，该文件每6小时更新一次
+$ wget https://very-temporary-spacerace-chain-snapshot.s3.amazonaws.com/Spacerace_pruned_stateroots_snapshot_latest.car
+# 启动lotus时添加daemon启动参数 --import-snapshot /path/to/Spacerace_stateroots_snapshot_latest.car
+```
+
 观察运行情况。在miner机器执行。常用命令列举如下。
 ```
 lotus-miner info
