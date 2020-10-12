@@ -55,7 +55,7 @@ Start lotus.
 ```
 # Check the version
 lotus -v
-lotus version 0.9.0+6block+git.762b5cb7.1602217518
+lotus version 0.10.0+6block+git.f8ce5ae2.1602498082
 
 # Start lotus
 nohup lotus daemon > ~/lotus.log 2>&1 &
@@ -139,6 +139,12 @@ If the storage path attached to the miner can also be accessed through the same 
 ```
 # set FetchToShared = true
 vi ~/.lotusminer/config.toml
+```
+
+Advanced: not to auto pledge new sectors when the balance is insufficient (sectors that have already started will continue sealing).
+```
+# not to auto pledge new sectors when the balance is less than 10 FIL (default 100 FIL)
+lotus --min-worker-balance-for-auto-pledge 10
 ```
 
 Observe the operation. Executed on the miner machine. commonly used commands are listed as follows.
