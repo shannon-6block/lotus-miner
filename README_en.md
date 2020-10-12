@@ -144,7 +144,7 @@ vi ~/.lotusminer/config.toml
 Advanced: not to auto pledge new sectors when the balance is insufficient (sectors that have already started will continue sealing).
 ```
 # not to auto pledge new sectors when the balance is less than 10 FIL (default 100 FIL)
-lotus --min-worker-balance-for-auto-pledge 10
+lotus-miner run --min-worker-balance-for-auto-pledge 10
 ```
 
 Observe the operation. Executed on the miner machine. commonly used commands are listed as follows.

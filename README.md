@@ -189,7 +189,7 @@ $ wget https://very-temporary-spacerace-chain-snapshot.s3.amazonaws.com/Spacerac
 进阶：余额不足情况下不再自动添加新的封装任务（已经开始封装的会继续完成）
 ```
 # 设置余额不足10 FIL情况下不再自动添加新的封装任务（默认 100 FIL）
-lotus --min-worker-balance-for-auto-pledge 10
+lotus-miner run --min-worker-balance-for-auto-pledge 10
 ```
 
 观察运行情况。在miner机器执行。常用命令列举如下。
