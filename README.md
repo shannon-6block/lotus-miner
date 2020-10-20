@@ -57,7 +57,7 @@ lotus fetch-params 32GiB
 ```
 # 确定版本
 lotus -v
-lotus version 0.9.0+6block+git.762b5cb7.1602217518
+lotus version 0.10.0+6block+git.f8ce5ae2.1602498082
 
 # 启动lotus
 nohup lotus daemon > ~/lotus.log 2>&1 &
@@ -184,6 +184,12 @@ sudo prlimit --nofile=1048576 --nproc=unlimited --stack=1048576 --rtprio=99 --ni
 # 获取快照文件，该文件每6小时更新一次
 $ wget https://very-temporary-spacerace-chain-snapshot.s3.amazonaws.com/Spacerace_pruned_stateroots_snapshot_latest.car
 # 启动lotus时添加daemon启动参数 --import-snapshot /path/to/Spacerace_stateroots_snapshot_latest.car
+```
+
+进阶：余额不足情况下不再自动添加新的封装任务（已经开始封装的会继续完成）
+```
+# 设置余额不足10 FIL情况下不再自动添加新的封装任务（默认 100 FIL）
+lotus-miner run --min-worker-balance-for-auto-pledge 10
 ```
 
 观察运行情况。在miner机器执行。常用命令列举如下。
