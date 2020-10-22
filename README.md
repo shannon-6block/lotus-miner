@@ -57,7 +57,7 @@ lotus fetch-params 32GiB
 ```
 # 确定版本
 lotus -v
-lotus version 0.10.0+6block+git.f8ce5ae2.1602498082
+lotus version 1.1.0+6block+git.888b0101.1603346418
 
 # 启动lotus
 nohup lotus daemon > ~/lotus.log 2>&1 &
@@ -188,7 +188,7 @@ $ wget https://very-temporary-spacerace-chain-snapshot.s3.amazonaws.com/Spacerac
 
 进阶：余额不足情况下不再自动添加新的封装任务（已经开始封装的会继续完成）
 ```
-# 设置余额不足10 FIL情况下不再自动添加新的封装任务（默认 100 FIL）
+# 设置余额不足10 FIL情况下不再自动添加新的封装任务（默认 10000 FIL）
 lotus-miner run --min-worker-balance-for-auto-pledge 10
 ```
 

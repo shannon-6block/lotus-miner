@@ -55,7 +55,7 @@ Start lotus.
 ```
 # Check the version
 lotus -v
-lotus version 0.10.0+6block+git.f8ce5ae2.1602498082
+lotus version 1.1.0+6block+git.888b0101.1603346418
 
 # Start lotus
 nohup lotus daemon > ~/lotus.log 2>&1 &
@@ -143,7 +143,7 @@ vi ~/.lotusminer/config.toml
 
 Advanced: not to auto pledge new sectors when the balance is insufficient (sectors that have already started will continue sealing).
 ```
-# not to auto pledge new sectors when the balance is less than 10 FIL (default 100 FIL)
+# not to auto pledge new sectors when the balance is less than 10 FIL (default 10000 FIL)
 lotus-miner run --min-worker-balance-for-auto-pledge 10
 ```
 
