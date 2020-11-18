@@ -192,6 +192,24 @@ $ wget https://very-temporary-spacerace-chain-snapshot.s3.amazonaws.com/Spacerac
 lotus-miner run --min-worker-balance-for-auto-pledge 10
 ```
 
+进阶：对于FatalError状态的sector，可以用下面的脚本解决
+```
+m=`lotus-miner info | grep 'Miner:' | awk -F ' ' '{print $2}'`
+lotus state sectors $m > /tmp/s.txt
+for i in `lotus-miner sectors list | grep -P '(Fatal|Fail|Recover)' | grep -v Remove | awk -F ' ' '{print $1}'`
+do
+  a=`cat /tmp/s.txt | grep -P "^$i:" | wc -l`
+  if [ $a -eq 0 ]
+  then
+    echo $i $a Removing
+    lotus-miner sectors update-state --really-do-it $i Removing
+  else
+    echo $i $a Proving
+    lotus-miner sectors update-state --really-do-it $i Proving
+  fi
+done
+```
+
 观察运行情况。在miner机器执行。常用命令列举如下。
 ```
 lotus-miner info
