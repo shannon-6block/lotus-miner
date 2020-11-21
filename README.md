@@ -124,8 +124,8 @@ tail -f ~/miner.log
 我们可以通过以下方式让worker同时处理多个sector。
 虽然最终的计算并行度仍然取决于worker的内存，但增加并发可以让worker在部分sector处于WaitSeed的时候计算资源不闲置。
 ```
-# worker使用多个封装路径，并发数也会随之增加。
-lotus-worker run --address xxx.xxx.xxx.xxx:3456 --attach /path/to/another/ssd/directory
+# worker使用多个封装路径，并发数也会随之增加。(这种方式只针对多块SSD没有做raid的情况)
+lotus-worker run --listen xxx.xxx.xxx.xxx:3456 --attach /path/to/another/ssd/directory
 
 # 在miner上设置ParallelSealLimit，表示每个封装路径所允许的并发数。
 vi ~/.lotusminer/config.toml
