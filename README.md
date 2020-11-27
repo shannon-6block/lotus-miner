@@ -210,6 +210,12 @@ do
 done
 ```
 
+进阶：公网ip端口绑定，假设公网ip为183.38.3.106，并将公网端口50666映射到了本地端口50888，修改lotus的config.toml，将Libp2p下的ListenAddresses和AnnounceAddresses配置如下
+```
+ListenAddresses = ["/ip4/0.0.0.0/tcp/50888"]
+AnnounceAddresses = ["/ip4/183.38.3.106/tcp/50666", "/ip4/127.0.0.1/tcp/50888"]
+```
+
 观察运行情况。在miner机器执行。常用命令列举如下。
 ```
 lotus-miner info
