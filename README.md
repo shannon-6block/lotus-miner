@@ -216,6 +216,13 @@ ListenAddresses = ["/ip4/0.0.0.0/tcp/50888"]
 AnnounceAddresses = ["/ip4/183.38.3.106/tcp/50666", "/ip4/127.0.0.1/tcp/50888"]
 ```
 
+进阶：优先打包，优先打包有两种方式。
+方式1: 脚本 https://github.com/shannon-6block/lotus-miner/blob/master/CMD.md
+方式2: lotus mpool config 命令,下面的命令将PriorityAddrs的参数换成你要优先打包消息的地址，其他参数按需求设置，lotus mpool config 可以查看当前配置
+```
+// 设置
+lotus mpool config '{"PriorityAddrs":["f3sgj7dj6caowoyulkq6xqveiogd4mqvpw7rzfpohreolwmvzutpmj6my5wl5xt5gjtq7lw5hk62rary453sga"],"SizeLimitHigh":30000,"SizeLimitLow":20000,"ReplaceByFeeRatio":1.25,"PruneCooldown":60000000000,"GasLimitOverestimation":1.25}'
+```
 观察运行情况。在miner机器执行。常用命令列举如下。
 ```
 lotus-miner info
