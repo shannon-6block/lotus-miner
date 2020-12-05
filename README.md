@@ -223,6 +223,23 @@ AnnounceAddresses = ["/ip4/183.38.3.106/tcp/50666", "/ip4/127.0.0.1/tcp/50888"]
 // 设置
 lotus mpool config '{"PriorityAddrs":["f3sgj7dj6caowoyulkq6xqveiogd4mqvpw7rzfpohreolwmvzutpmj6my5wl5xt5gjtq7lw5hk62rary453sga"],"SizeLimitHigh":30000,"SizeLimitLow":20000,"ReplaceByFeeRatio":1.25,"PruneCooldown":60000000000,"GasLimitOverestimation":1.25}'
 ```
+进阶：高BaseFee情况下，保障消息上链配置
+最近（2020.12.5）Filecoin挖矿BaseFee持续走高，导致消息拥堵在本地消息池中无法上链，导致算力增速异常下降，解决方法如下：
+```
+修改miner配置文件[Fees]下的5项参数，将他们改成可以接受的较大数值，例如MaxWindowPostGasFee 设为100FIL，其余的设置为10FIL, 修改后重启miner生效。
+[Fees]
+  MaxPreCommitGasFee = "10 FIL"
+  MaxCommitGasFee = "10 FIL"
+  MaxWindowPostGasFee = "100 FIL"
+  MaxPublishDealsFee = "10 FIL"
+  MaxMarketBalanceAddFee = "10 FIL"
+
+```
+可以通过以下命令查看本地消息池拥堵情况：
+```
+lotus mpool pending --local
+```
+
 观察运行情况。在miner机器执行。常用命令列举如下。
 ```
 lotus-miner info
