@@ -57,7 +57,7 @@ lotus fetch-params 32GiB
 ```
 # 确定版本
 lotus -v
-lotus version 1.2.1+6block+git.a18515259.1606467166+2
+lotus version 1.2.1+6block+git.536f54751.1607497850+2
 
 # 启动lotus
 nohup lotus daemon > ~/lotus.log 2>&1 &
