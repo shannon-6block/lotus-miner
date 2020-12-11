@@ -70,11 +70,11 @@ lotus wallet new bls
 lotus sync wait
 ```
 
-Use the address to get testnet coins from the [Slack](https://filecoinproject.slack.com/archives/C017CCH1MHB).
+Send some FILs to the generated address.
 
 Start miner. Need to complete the test coin getting, miner registering, and node synchronization before.
 ```
-# check the balance of the testnet coins
+# check the balance of the genetated address
 lotus wallet balance
 
 # Use miner registration results to initialize miner

@@ -72,11 +72,11 @@ lotus wallet new bls
 lotus sync wait
 ```
 
-用address去 [Slack](https://filecoinproject.slack.com/archives/C017CCH1MHB) 领取测试币。
+给生成的address发送一点FIL。
 
 启动miner。
 ```
-# 查看测试币余额
+# 查看生成address的余额
 lotus wallet balance
 
 # 使用address注册矿工
