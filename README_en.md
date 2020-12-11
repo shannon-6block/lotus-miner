@@ -156,7 +156,7 @@ lotus-miner sealing workers
 lotus-miner sealing jobs
 ```
 
-Or you can use the block explorer, like [Filfox](https://calibration.filfox.io/) , to check it.
+Or you can use the block explorer, like [Filfox](https://filfox.info/) , to check it.
 
 If any sector has error, you can check out the sector log for the reason of the error. Or simply remove the sector. Take sector 0 as an example.
 ```
