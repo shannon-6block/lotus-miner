@@ -239,6 +239,15 @@ lotus mpool config '{"PriorityAddrs":["f3sgj7dj6caowoyulkq6xqveiogd4mqvpw7rzfpoh
 ```
 lotus mpool pending --local
 ```
+进阶：修改owner、worker、control地址
+```
+# 查看矿工关联的地址信息
+lotus-miner actor control list
+# 修改owner地址
+lotus-miner actor set-owner --really-do-it <address>
+# 修改control地址
+lotus-miner actor control set --really-do-it <address1 address2 ...>
+```
 
 观察运行情况。在miner机器执行。常用命令列举如下。
 ```
