@@ -42,6 +42,26 @@ if [ "$SWAPSIZE" != "64G" ]; then
   echo "vm.swappiness=1" >> /etc/sysctl.conf
 fi
 
+sysctl vm.dirty_bytes=53687091200
+sed -i "/dirty_bytes/d" /etc/sysctl.conf
+echo "vm.dirty_bytes=53687091200" >> /etc/sysctl.conf
+
+sysctl vm.dirty_background_bytes=10737418240
+sed -i "/dirty_background_bytes/d" /etc/sysctl.conf
+echo "vm.dirty_background_bytes=10737418240" >> /etc/sysctl.conf
+
+sysctl vm.vfs_cache_pressure=1000
+sed -i "/vfs_cache_pressure/d" /etc/sysctl.conf
+echo "vm.vfs_cache_pressure=1000" >> /etc/sysctl.conf
+
+sysctl vm.dirty_writeback_centisecs=100
+sed -i "/dirty_writeback_centisecs/d" /etc/sysctl.conf
+echo "vm.dirty_writeback_centisecs=100" >> /etc/sysctl.conf
+
+sysctl vm.dirty_expire_centisecs=100
+sed -i "/dirty_expire_centisecs/d" /etc/sysctl.conf
+echo "vm.dirty_expire_centisecs=100" >> /etc/sysctl.conf
+
 # install GPU driver
 nvidia-smi
 NEEDGPU=$?
