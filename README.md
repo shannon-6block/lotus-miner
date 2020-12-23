@@ -247,6 +247,11 @@ lotus-miner actor control list
 lotus-miner actor set-owner --really-do-it <address>
 # 修改control地址
 lotus-miner actor control set --really-do-it <address1 address2 ...>
+# 修改worker地址
+# step1.
+lotus-miner actor propose-change-worker <address>
+# step2.
+lotus-miner actor confirm-change-worker <address>
 ```
 
 观察运行情况。在miner机器执行。常用命令列举如下。
