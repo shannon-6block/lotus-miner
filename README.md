@@ -217,6 +217,10 @@ done
 ```
 ListenAddresses = ["/ip4/0.0.0.0/tcp/50888"]
 AnnounceAddresses = ["/ip4/183.38.3.106/tcp/50666", "/ip4/127.0.0.1/tcp/50888"]
+
+# 重启后检查是否生效 
+$ lotus net reachability
+AutoNAT status:  Public
 ```
 
 进阶：优先打包，优先打包有两种方式。
