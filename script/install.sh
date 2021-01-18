@@ -7,7 +7,7 @@ tar zxvf lotus-miner.tar.gz -C cmd/
 cp cmd/* /usr/local/bin/
 
 apt update
-apt install -y mesa-opencl-icd ocl-icd-opencl-dev ntpdate ubuntu-drivers-common
+apt install -y mesa-opencl-icd ocl-icd-opencl-dev ntpdate ubuntu-drivers-common gcc git bzr jq pkg-config curl clang build-essential hwloc libhwloc-dev wget
 
 # time adjust
 ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
