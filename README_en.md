@@ -49,6 +49,9 @@ export FIL_PROOFS_PARAMETER_CACHE="$HOME/filecoin-proof-parameters"
 export IPFS_GATEWAY="https://proof-parameters.s3.cn-south-1.jdcloud-oss.com/ipfs/"
 # Manually download the zero-knowledge proof parameters to the FIL_PROOFS_PARAMETER_CACHE directory, 200GB
 lotus fetch-params 32GiB
+
+# Support new graphics cards
+export BELLMAN_CUSTOM_GPU="GeForce RTX 3090:10496, GeForce RTX 3080:8704"
 ```
 
 Start lotus.

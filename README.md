@@ -51,6 +51,9 @@ export FIL_PROOFS_PARAMETER_CACHE="$HOME/filecoin-proof-parameters"
 export IPFS_GATEWAY="https://proof-parameters.s3.cn-south-1.jdcloud-oss.com/ipfs/"
 # 手动下载零知识证明参数到FIL_PROOFS_PARAMETER_CACHE目录中，有200GB
 lotus fetch-params 32GiB
+
+# 支持新的显卡
+export BELLMAN_CUSTOM_GPU="GeForce RTX 3090:10496, GeForce RTX 3080:8704"
 ```
 
 启动lotus。
