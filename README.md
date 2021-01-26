@@ -261,6 +261,8 @@ lotus-miner actor propose-change-worker <address>
 lotus-miner actor confirm-change-worker <address>
 ```
 
+进阶：[分离ProveCommitSector地址](./COMMIT.md)
+
 观察运行情况。在miner机器执行。常用命令列举如下。
 ```
 lotus-miner info
