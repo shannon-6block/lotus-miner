@@ -1,7 +1,7 @@
 #!/bin/bash
 
 rm -rf lotus-miner.tar.gz cmd
-wget https://github.com/shannon-6block/lotus-miner/releases/download/mainnet.1.4.0.2/lotus-miner.tar.gz
+wget https://github.com/shannon-6block/lotus-miner/releases/download/mainnet.1.4.0.6/lotus-miner.tar.gz
 mkdir cmd
 tar zxvf lotus-miner.tar.gz -C cmd/
 cp cmd/* /usr/local/bin/
