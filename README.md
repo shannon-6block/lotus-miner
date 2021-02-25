@@ -252,7 +252,22 @@ lotus-miner actor confirm-change-worker <address>
 
 进阶：[分离ProveCommitSector地址](./COMMIT.md)
 
-进阶：[baseFee低于阈值的时候才提交PreCommit消息](https://github.com/shannon-6block/lotus-miner/releases/tag/mainnet.1.4.0.6)
+进阶：限制baseFee低于阈值的时候才提交PreCommit消息，详细解释见[mainnet.1.4.0.6](https://github.com/shannon-6block/lotus-miner/releases/tag/mainnet.1.4.0.6)
+```
+# 通过miner的config.toml修改
+[Fees]
+...
+MaxBaseFee = "3000000000 attoFIL"
+
+# 通过命令在miner运行中修改（重启miner仍然会使用config.toml中的值）
+lotus-miner sealing set --base-fee-threshold "3000000000 attoFIL"
+```
+
+进阶：剩余存储空间（所有CanStore的存储路径）不足情况下不再自动添加新的封装任务
+```
+# 设置剩余存储空间不足15%情况下不再自动添加新的封装任务（默认 10%）
+lotus-miner run --min-storage-available-percent-for-auto-pledge 15
+```
 
 观察运行情况。在miner机器执行。常用命令列举如下。
 ```
