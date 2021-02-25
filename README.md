@@ -60,7 +60,7 @@ export BELLMAN_CUSTOM_GPU="GeForce RTX 3090:10496, GeForce RTX 3080:8704"
 ```
 # 确定版本
 lotus -v
-lotus version 1.4.0+6block+git.e31a09c8c.1611719001+2
+lotus version 1.5.0+6block+git.7b3342238.1614217875+2
 
 # 启动lotus
 nohup lotus daemon > ~/lotus.log 2>&1 &
@@ -230,18 +230,7 @@ AutoNAT status:  Public
 // 设置
 lotus mpool config '{"PriorityAddrs":["f3sgj7dj6caowoyulkq6xqveiogd4mqvpw7rzfpohreolwmvzutpmj6my5wl5xt5gjtq7lw5hk62rary453sga"],"SizeLimitHigh":30000,"SizeLimitLow":20000,"ReplaceByFeeRatio":1.25,"PruneCooldown":60000000000,"GasLimitOverestimation":1.25}'
 ```
-进阶：高BaseFee情况下，保障消息上链配置
-最近（2020.12.5）Filecoin挖矿BaseFee持续走高，导致消息拥堵在本地消息池中无法上链，导致算力增速异常下降，解决方法如下：
-```
-修改miner配置文件[Fees]下的5项参数，将他们改成可以接受的较大数值，例如MaxWindowPostGasFee 设为100FIL，其余的设置为10FIL, 修改后重启miner生效。
-[Fees]
-  MaxPreCommitGasFee = "10 FIL"
-  MaxCommitGasFee = "10 FIL"
-  MaxWindowPostGasFee = "100 FIL"
-  MaxPublishDealsFee = "10 FIL"
-  MaxMarketBalanceAddFee = "10 FIL"
 
-```
 可以通过以下命令查看本地消息池拥堵情况：
 ```
 lotus mpool pending --local
@@ -262,6 +251,8 @@ lotus-miner actor confirm-change-worker <address>
 ```
 
 进阶：[分离ProveCommitSector地址](./COMMIT.md)
+
+进阶：[baseFee低于阈值的时候才提交PreCommit消息](https://github.com/shannon-6block/lotus-miner/releases/tag/mainnet.1.4.0.6)
 
 观察运行情况。在miner机器执行。常用命令列举如下。
 ```
