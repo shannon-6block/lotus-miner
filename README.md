@@ -182,12 +182,7 @@ root       2333 6666 88 Nov31 ?        1-02:50:00 lotus-miner run
 sudo prlimit --nofile=1048576 --nproc=unlimited --stack=1048576 --rtprio=99 --nice=-19 --pid 2333
 ```
 
-进阶：新建lotus节点时导入快照快速同步
-```
-# 获取快照文件，该文件每6小时更新一次
-$ wget https://very-temporary-spacerace-chain-snapshot.s3.amazonaws.com/Spacerace_pruned_stateroots_snapshot_latest.car
-# 启动lotus时添加daemon启动参数 --import-snapshot /path/to/Spacerace_stateroots_snapshot_latest.car
-```
+进阶：[lotus节点导入快照快速同步](https://docs.filecoin.io/get-started/lotus/chain/)
 
 进阶：余额不足情况下不再自动添加新的封装任务（已经开始封装的会继续完成）
 ```
