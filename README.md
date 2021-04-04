@@ -234,10 +234,16 @@ lotus mpool pending --local
 ```
 # 查看矿工关联的地址信息
 lotus-miner actor control list
+
 # 修改owner地址
-lotus-miner actor set-owner --really-do-it <address>
+# step1:
+lotus-miner actor set-owner --really-do-it <newOwner> <oldOwner>
+# step2:
+lotus-miner actor set-owner --really-do-it <newOwner> <newOwner>
+
 # 修改control地址
 lotus-miner actor control set --really-do-it <address1 address2 ...>
+
 # 修改worker地址
 # step1.
 lotus-miner actor propose-change-worker <address>
