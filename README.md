@@ -3,6 +3,8 @@
 
 石榴矿池lotus-miner社区版，持续免费向公众提供。
 
+最新版部署文档，见 [lotus-script](https://github.com/6block/lotus-script)。
+
 # 推荐配置
 * CPU：AMD 3960X 或 Ryzen Threadripper 其他型号
 * 内存：256 GB
@@ -60,7 +62,7 @@ export BELLMAN_CUSTOM_GPU="GeForce RTX 3090:10496, GeForce RTX 3080:8704"
 ```
 # 确定版本
 lotus -v
-lotus version 1.6.0+6block+git.78e3e8bdd.1618132380+2
+lotus version 1.8.0+6block+git.09171ead3.1619596471+2
 
 # 启动lotus
 nohup lotus daemon > ~/lotus.log 2>&1 &
