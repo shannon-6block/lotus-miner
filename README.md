@@ -62,7 +62,7 @@ export BELLMAN_CUSTOM_GPU="GeForce RTX 3090:10496, GeForce RTX 3080:8704"
 ```
 # 确定版本
 lotus -v
-lotus version 1.8.0+6block+git.09171ead3.1619596471+2
+lotus version 1.10.0+6block+git.50654801a.1624953092+2
 
 # 启动lotus
 nohup lotus daemon > ~/lotus.log 2>&1 &
