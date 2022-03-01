@@ -1,3 +1,8 @@
+# 公告
+团队目前专注于区块链技术研究，无法继续提供软件支持。所以本软件不再更新，请使用官方版本进行代替。本软件可以和官方版本实现无缝兼容。
+
+可以关注我的[Twitter](https://twitter.com/biquanlibai)、[YouTube](https://www.youtube.com/c/biquanlibai)和[Github](https://github.com/biquanlibai)了解后续的研究方向。
+
 # lotus-miner
 [English](README_en.md)
 
